@@ -8,17 +8,23 @@ function Pipe() {
   this.speed = 2;
 
   this.hits = function(bird) {
+    if (shifted == false) {
     if (bird.y < this.top || bird.y > height - this.bottom) {
         if (bird.x > this.x && bird.x < this.x + this.w) {
           return true;
       }
     }
+  }
     return false;
   }
 
 
   this.show = function() {
-    fill(255);
+    if (shifted == false) {
+    fill(255, 0, 0);
+  } else if (shifted == true) {
+    fill(0, 0, 255);
+  }
     rect(this.x, 0, this.w, this.top);
     rect(this.x, height-this.bottom, this.w, this.bottom);
 
@@ -33,5 +39,4 @@ function Pipe() {
   this.update = function() {
     this.x -= this.speed;
   }
-
 }
